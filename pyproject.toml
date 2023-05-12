@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "compose-template"
+version = "0.1.0"
+description = ""
+authors = ["Priller <coderbackend@gmail.com>"]
+readme = "README.md"
+packages = [{include = "compose_template"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.1"
+psycopg2-binary = "^2.9.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

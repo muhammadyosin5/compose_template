@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  django:
+    build: .
+    command: sh -c "python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    environment:
+#      - postgres uchun
+      - DJANGO_DB=django.db.backends.postgresql
+      - DB_NAME=compose_postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=1
+      - DB_PORT=5432
+      - DB_HOST=postgres_db
+#      - mysql uchun
+#      - DJANGO_DB=django.db.backends.mysql
+#      - DB_NAME=mysql_db
+#      - DB_USER=mysql
+#      - DB_PASSWORD=1
+#      - DB_PORT=3306
+#      - DB_HOST=mysql
+    depends_on:
+      - postgres_db
+#      - mysql
+
+  postgres_db:
+    image: postgres:alpine3.17
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=compose_postgres
+      - POSTGRES_PASSWORD=1
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+#  mysql:
+#    restart: always
+#    image: mysql
+#    container_name: mysql_db
+#    environment:
+#      - MYSQL_DATABASE=mysql_db
+#      - MYSQL_USER=mysql
+#      - MYSQL_PASSWORD=1
+#      - MYSQL_ROOT_PASSWORD=1
+
+volumes:
+  pgdata:
