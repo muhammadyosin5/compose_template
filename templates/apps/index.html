@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <h1>Product form</h1>
+        <label for="product_name">name:</label><br>
+        <input type="text" id="product_name" name="name"><br>
+        <label for="product_price">Price:</label><br>
+        <input type="number" id="product_price" name="price">
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <br>
+    <form method="post" action="{% url 'add_category' %}">
+        {% csrf_token %}
+        <h1>Category form</h1>
+        <label for="category_name">name:</label><br>
+        <input type="text" id="category_name" name="name"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <form method="post" action="{% url 'add_user' %}">
+        {% csrf_token %}
+        <h1>User form</h1>
+        <label for="username">username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">password:</label><br>
+        <input type="password" id="password" name="password1"><br>
+        <label for="confirm_password">confirm password:</label><br>
+        <input type="password" id="confirm_password" name="password2">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

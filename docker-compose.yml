@@ -3,7 +3,8 @@ version: '3.8'
 services:
   django:
     build: .
-    command: sh -c "python manage.py migrate &&
+    image: juggernout1/mydjango:latest
+    command: sh -c "sleep 5 && python manage.py migrate &&
                     python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
@@ -27,7 +28,7 @@ services:
 #      - mysql
 
   postgres_db:
-    image: postgres:alpine3.17
+    image: juggernout1/postgres:alpine3.17
     ports:
       - "5432:5432"
     environment:
